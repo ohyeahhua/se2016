@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-03 14:38:58
+-- 產生時間： 2016-12-03 17:06:24
 -- 伺服器版本: 10.1.13-MariaDB
 -- PHP 版本： 7.0.5
 
@@ -33,6 +33,20 @@ CREATE TABLE `intro` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- 資料表的匯出資料 `intro`
+--
+
+INSERT INTO `intro` (`cID`, `cName`, `cIntro`) VALUES
+(1, 'A', '皮卡丘'),
+(2, 'B', '傑尼龜'),
+(3, 'C', '快龍'),
+(4, 'D', '胖丁'),
+(5, 'E', '卡比獸'),
+(6, 'F', '小火龍'),
+(7, 'G', '攻擊力加倍'),
+(8, 'H', '攻擊力減半');
+
+--
 -- 已匯出資料表的索引
 --
 
@@ -50,7 +64,7 @@ ALTER TABLE `intro`
 -- 使用資料表 AUTO_INCREMENT `intro`
 --
 ALTER TABLE `intro`
-  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
