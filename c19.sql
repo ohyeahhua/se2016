@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-08 19:44:30
+-- 產生時間： 2016-12-10 03:58:13
 -- 伺服器版本: 10.1.13-MariaDB
--- PHP 版本： 7.0.5
+-- PHP 版本： 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -96,6 +96,36 @@ CREATE TABLE `inventory` (
   `H` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- 資料表的匯出資料 `inventory`
+--
+
+INSERT INTO `inventory` (`uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
+(4, 2, 2, 2, 2, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `player`
+--
+
+CREATE TABLE `player` (
+  `uid` int(11) NOT NULL,
+  `loginID` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `pwd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `money` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 資料表的匯出資料 `player`
+--
+
+INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES
+(0, 'NPC', 'NPC', 'NPC', 99999),
+(1, 'c19', 'sam', 'c19', 5000),
+(4, '123', '123', '123', 1000);
+
 -- --------------------------------------------------------
 
 --
@@ -109,20 +139,6 @@ CREATE TABLE `record` (
   `cName` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
   `deadline` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- 資料表結構 `user`
---
-
-CREATE TABLE `user` (
-  `uid` int(11) NOT NULL,
-  `loginID` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `money` int(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -142,16 +158,16 @@ ALTER TABLE `card`
   ADD PRIMARY KEY (`cID`);
 
 --
+-- 資料表索引 `player`
+--
+ALTER TABLE `player`
+  ADD PRIMARY KEY (`uid`);
+
+--
 -- 資料表索引 `record`
 --
 ALTER TABLE `record`
   ADD PRIMARY KEY (`rid`);
-
---
--- 資料表索引 `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`uid`);
 
 --
 -- 在匯出的資料表使用 AUTO_INCREMENT
@@ -166,17 +182,17 @@ ALTER TABLE `auction`
 -- 使用資料表 AUTO_INCREMENT `card`
 --
 ALTER TABLE `card`
-  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- 使用資料表 AUTO_INCREMENT `player`
+--
+ALTER TABLE `player`
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
   MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
---
--- 使用資料表 AUTO_INCREMENT `user`
---
-ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
