@@ -1,5 +1,4 @@
 <?php
-session_start();
 require("user.php");
 /*
 if( isset($_GET["logout"])) {
@@ -19,10 +18,9 @@ switch($act) {
         $loginID = $_POST['loginID'];
         $password = $_POST['pwd'];
         if (checkUser($loginID, $password)) {
-            echo "login OK</br>";
+            echo "<script>alert('Login OK'); window.location='profile.php';</script> ";
         } else {
-            $_SESSION['loginID'] = "";
-            echo "Login failed.</br>";
+            echo "<script>alert('Login failed'); window.location='index.php';</script> ";
         }
         break;
     case "register":
@@ -30,11 +28,9 @@ switch($act) {
         $password = $_POST['pwd'];
         $name = $_POST['name'];
         if (register($loginID,$password,$name)){
-            echo "register sucessfully!";
-            echo "<a href='index.php'>返回登入頁面</a>";
+            echo "<script>alert('Sucessfully, please login.'); window.location='index.php';</script> ";
         }else{
-            echo "register failed!";
-            echo "<a href='index.php'>返回登入頁面</a>";
+            echo "<script>alert('Failed, please register again.'); window.location='register.html';</script> ";
         }
         break;
     default:
