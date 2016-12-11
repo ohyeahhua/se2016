@@ -1,0 +1,29 @@
+function refund($uid){
+    global $conn;
+    $uID =mysqli_real_escape_string($conn,$uID);
+    if($result = mysqli_query($conn,$sql){
+   $sql = "update inventory set A = A-1 ,B=B-1,C=C-1,D=D-1,E=E-1,F=F-1,G=G-1,H=H-1 where inventory.uid=$uid;";
+    return mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $sql="UPDATE `player` SET `money` = 'money'+1000 WHERE `player`.`uid` = $uid;";
+    }else{
+        return false;
+    }
+}
+
+  case "redeem"
+        $A=$_POST['A'];
+	$B=$_POST['B'];
+        $C=$_POST['C'];
+	$D=$_POST['D'];
+	$E=$_POST['E'];
+	F=$_POST['F'];
+	$G=$_POST['G'];
+        $H=$_POST['H'];
+		$uid=$_SESSION['uid'];
+        if($uid,$A,$B,$C,$D,$E,$F,$G,$H)){
+        echo("ok");
+        }else{
+        echo("failed")
+    }
+    break;
