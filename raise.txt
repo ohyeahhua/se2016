@@ -1,0 +1,55 @@
+<?php
+session_start();
+require("dbconnect.php");
+?>
+<h1>deal</h1>
+<table width="400" border="1">
+<form method="post" action="savedeal.php">
+  <input type="hidden" name="act" value="deal">
+  <tr>
+    <td>highname:<input type='text' name="high-name" id="high-name" value=""><td>
+    <td>highprice:<input type='text' name="high-price" id="high-price" value=""></td>
+  </tr>
+
+      <input type="submit" name="Submit" value="送出" />
+	</form>
+  </tr>
+</table>
+
+
+
+
+<?php
+session_start();
+require("dbconnect.php");
+$high-name=mysqli_real_escape_string($conn,$_POST['high-name']);
+$high-price=mysqli_real_escape_string($conn,$_POST['high-price']);
+if ($high-name,$high-price) { //if name is not empty
+	UPDATE `auction` SET `high-name` = '$high-name', `high-price` = '$high-price' WHERE `auction`.`aid` ="" ;
+	mysqli_query($conn, $sql) or die("Update failed, SQL query error"); //執行SQL
+	echo "dealed";
+} else {
+	echo "Name cannot be empty";
+}
+header("Location:Profile.php");
+?>
+<br>
+<a href="Profile.php"> Mypage</a>
+
+
+
+        case "deal":
+		$high-name=$_POST['high-name'];
+		$high-price=$_POST['high-price'];
+		$id=$_POST['aid'];
+		if ($high-name) { //if name is not empty
+			if (deal($high-name,$high-price)) {
+				echo( "修改成功");
+			} else {
+				echo( "deal failed.");
+			}
+		} else {
+			echo "Message name cannot be empty";
+		}
+		break;
+
