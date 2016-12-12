@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-10 09:53:55
--- 伺服器版本: 10.1.16-MariaDB
--- PHP 版本： 5.6.24
+-- 產生時間： 2016-12-12 03:56:37
+-- 伺服器版本: 10.1.13-MariaDB
+-- PHP 版本： 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,6 +30,7 @@ CREATE TABLE `auction` (
   `aid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `cID` int(11) NOT NULL,
+  `num` int(255) NOT NULL,
   `lowprice` int(11) NOT NULL,
   `uptime` datetime NOT NULL,
   `deadline` datetime NOT NULL,
@@ -41,8 +42,12 @@ CREATE TABLE `auction` (
 -- 資料表的匯出資料 `auction`
 --
 
-INSERT INTO `auction` (`aid`, `uid`, `cID`, `lowprice`, `uptime`, `deadline`, `high-name`, `high-price`) VALUES
-(1, 4, 1, 500, '2016-12-09 00:00:00', '2017-04-12 18:46:47', '', 0);
+INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadline`, `high-name`, `high-price`) VALUES
+(13, 13, 1, 1, 500, '2016-12-01 23:59:00', '2016-12-11 18:00:00', '', 0),
+(14, 13, 2, 2, 500, '2016-12-01 12:59:00', '2016-12-12 01:00:00', '', 0),
+(15, 13, 3, 2, 500, '2016-12-02 12:59:00', '2016-12-31 12:59:00', 'qqq', 600),
+(16, 13, 4, 2, 500, '2016-01-01 01:00:00', '2016-12-30 12:59:00', '', 0),
+(17, 14, 4, 2, 600, '2015-12-31 12:59:00', '2017-02-02 01:00:00', '789', 703);
 
 -- --------------------------------------------------------
 
@@ -78,6 +83,7 @@ INSERT INTO `card` (`cID`, `cName`, `function`) VALUES
 --
 
 CREATE TABLE `inventory` (
+  `id` int(255) NOT NULL,
   `uid` int(11) NOT NULL,
   `A` int(11) NOT NULL,
   `B` int(11) NOT NULL,
@@ -93,15 +99,10 @@ CREATE TABLE `inventory` (
 -- 資料表的匯出資料 `inventory`
 --
 
-INSERT INTO `inventory` (`uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
-(4, 2, 2, 2, 2, 0, 0, 0, 0),
-(5, 2, 2, 2, 2, 0, 0, 0, 0),
-(4, 2, 2, 2, 2, 0, 0, 0, 0),
-(4, 2, 2, 2, 2, 0, 0, 0, 0),
-(4, 2, 2, 2, 2, 0, 0, 0, 0),
-(9, 2, 2, 2, 2, 0, 0, 0, 0),
-(10, 2, 2, 2, 2, 0, 0, 0, 0),
-(11, 2, 2, 2, 2, 0, 0, 0, 0);
+INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
+(10, 13, 1, 2, 0, 0, 0, 0, 0, 0),
+(11, 14, 2, 2, 2, 0, 0, 0, 0, 0),
+(12, 15, 2, 2, 2, 2, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -114,7 +115,7 @@ CREATE TABLE `player` (
   `loginID` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `pwd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `money` int(15) NOT NULL
+  `money` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -122,9 +123,9 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES
-(0, 'NPC', 'NPC', 'NPC', 99999),
-(1, 'c19', 'sam', 'c19', 5000),
-(4, '123', '123', '123', 1000);
+(13, '123', '123', '123', '1000'),
+(14, '456', '456', '456', '1000'),
+(15, '789', '789', '789', '297');
 
 -- --------------------------------------------------------
 
@@ -158,6 +159,12 @@ ALTER TABLE `card`
   ADD PRIMARY KEY (`cID`);
 
 --
+-- 資料表索引 `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `player`
 --
 ALTER TABLE `player`
@@ -177,17 +184,22 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
 ALTER TABLE `card`
   MODIFY `cID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
+-- 使用資料表 AUTO_INCREMENT `inventory`
+--
+ALTER TABLE `inventory`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
 -- 使用資料表 AUTO_INCREMENT `player`
 --
 ALTER TABLE `player`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- 使用資料表 AUTO_INCREMENT `record`
 --
