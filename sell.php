@@ -1,9 +1,9 @@
 <?php
 require("dbconnect.php");
 function seeAuction(){
-    global $conn;
-    $now = date ("Y-m-d H:i:s"); 
-    $sql = "select aid,cName,name,lowprice,num,deadline,`high-name`,`high-price` from auction,player,card where auction.uid=player.uid and card.cID=auction.cID and deadline > '$now' and uptime < '$now';";  
+    global $conn; 
+    $sql = "select aid,cName,name,lowprice,num,deadline,uptime,`high-name`,`high-price` from auction,player,card 
+where auction.uid=player.uid and card.cID=auction.cID";  
     return mysqli_query($conn,$sql);
 }
 function up($uid, $cName, $num, $lowprice, $uptime, $deadline) {
@@ -39,5 +39,20 @@ function submoney($name,$price,$money){
     $sql = "update player set money='$tmp' where player.name ='$name';";
     mysqli_query($conn,$sql);
     return $tmp;
+}
+function seeRecord($uid) {
+    global $conn;
+    $sql = "SELECT name,high-name,cName,deadline,high-price from player,auction where auction.uid=player.uid and auction.high-name=player.uid and card.cID=auction.cID";
+    if ($result = mysqli_query($conn,$sql)) {
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>{$row['name']}</td>";
+            echo "<td>{$row['high-name']}</td>";
+            echo "<td>{$row['cName']}</td>";
+            echo "<td>{$row['high-price']}</td>";
+            echo "<td>{$row['deadline']}</td></tr>";
+        }
+    } else {
+        return false;
+    }
 }
 ?>

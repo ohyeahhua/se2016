@@ -1,14 +1,11 @@
 <?php
 require("user.php");
 require("sell.php");
-/*
 if( isset($_GET["logout"])) {
-    if ($_GET["logout"]==1)
-        echo "Please <a href='index.php'>Login</a>.";
-        session_destroy();
-        exit(0);
+    session_destroy();
+    echo "<script>alert('Logout! Please login.'); window.location='index.php';</script> ";
 }
-*/
+
 if(! isset($_POST["act"])) {
     exit(0);
 }

@@ -13,6 +13,8 @@ if(isset($_GET['type'])&&isset($_GET['nnum'])){
     $nnum=0;
 }
 ?>
+<a href='record.php'>Record</a>
+<a href='controller.php?logout=true'><button>登出</button></a>
 <hr></hr>
 <h2>Your card<h2>
 <table border='5' width='500'>
@@ -69,18 +71,23 @@ Amount:<input type='text' name='num' value='<?php echo "$nnum"?>' >
 <?php
 $result = seeAuction();
 while($row = mysqli_fetch_assoc($result)){
-    echo "<tr><td>{$row['aid']}</td>";
-    echo "<td>{$row['name']}</td>";
-    echo "<td>{$row['cName']}</td>";
-    echo "<td>{$row['num']}</td>";
-    echo "<td>{$row['lowprice']}</td>";
-    echo "<td>{$row['deadline']}</td>";
-    echo "<td>{$row['high-name']}</td>";
-    echo "<td>{$row['high-price']}</td>";
-    if($row['name'] == $_SESSION['name'])
-        echo "<td><button>我要出價</button></td></tr>";
-    else
-        echo "<td><a href='profile.php?aid={$row['aid']}&high={$row['high-price']}&hName={$row['high-name']}'><button>我要出價</button></a></td></tr>";
+    $uptime=strtotime($row['uptime']);
+    $deadline=strtotime($row['deadline']);
+    $now=strtotime(date ("Y-m-d H:i:s",strtotime("+420 minutes")));
+    if($uptime < $now && $now < $deadline ){
+        echo "<tr><td>{$row['aid']}</td>";
+        echo "<td>{$row['name']}</td>";
+        echo "<td>{$row['cName']}</td>";
+        echo "<td>{$row['num']}</td>";
+        echo "<td>{$row['lowprice']}</td>";
+        echo "<td>{$row['deadline']}</td>";
+        echo "<td>{$row['high-name']}</td>";
+        echo "<td>{$row['high-price']}</td>";
+        if($row['name'] == $_SESSION['name'])
+            echo "<td><button>我要出價</button></td></tr>";
+        else
+            echo "<td><a href='profile.php?aid={$row['aid']}&high={$row['high-price']}&hName={$row['high-name']}'><button>我要出價</button></a></td></tr>";
+    }
 }
 if(isset($_GET['aid'])){
     $aid=$_GET['aid'];
