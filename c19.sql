@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-12 03:56:37
--- 伺服器版本: 10.1.13-MariaDB
--- PHP 版本： 5.6.21
+-- 產生時間： 2016-12-13 21:40:47
+-- 伺服器版本: 10.1.16-MariaDB
+-- PHP 版本： 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -43,11 +43,8 @@ CREATE TABLE `auction` (
 --
 
 INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadline`, `high-name`, `high-price`) VALUES
-(13, 13, 1, 1, 500, '2016-12-01 23:59:00', '2016-12-11 18:00:00', '', 0),
-(14, 13, 2, 2, 500, '2016-12-01 12:59:00', '2016-12-12 01:00:00', '', 0),
-(15, 13, 3, 2, 500, '2016-12-02 12:59:00', '2016-12-31 12:59:00', 'qqq', 600),
-(16, 13, 4, 2, 500, '2016-01-01 01:00:00', '2016-12-30 12:59:00', '', 0),
-(17, 14, 4, 2, 600, '2015-12-31 12:59:00', '2017-02-02 01:00:00', '789', 703);
+(19, 16, 2, 2, 100, '2016-12-12 11:08:00', '2016-12-12 12:00:00', '', 100),
+(20, 17, 3, 2, 100, '2016-12-12 23:00:00', '2017-12-12 01:00:00', '', 100);
 
 -- --------------------------------------------------------
 
@@ -100,9 +97,8 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
-(10, 13, 1, 2, 0, 0, 0, 0, 0, 0),
-(11, 14, 2, 2, 2, 0, 0, 0, 0, 0),
-(12, 15, 2, 2, 2, 2, 0, 0, 0, 0);
+(13, 16, 1, 0, 2, 2, 0, 0, 0, 5),
+(14, 17, 0, 2, 0, 2, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -123,9 +119,8 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES
-(13, '123', '123', '123', '1000'),
-(14, '456', '456', '456', '1000'),
-(15, '789', '789', '789', '297');
+(16, '123', '123', '123', '1000'),
+(17, '456', '456', '456', '1000');
 
 -- --------------------------------------------------------
 
@@ -184,7 +179,7 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
@@ -194,17 +189,17 @@ ALTER TABLE `card`
 -- 使用資料表 AUTO_INCREMENT `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- 使用資料表 AUTO_INCREMENT `player`
 --
 ALTER TABLE `player`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
