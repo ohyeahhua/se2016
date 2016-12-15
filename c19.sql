@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-13 21:40:47
--- 伺服器版本: 10.1.16-MariaDB
--- PHP 版本： 5.6.24
+-- 產生時間： 2016-12-15 06:49:10
+-- 伺服器版本: 10.1.13-MariaDB
+-- PHP 版本： 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -34,17 +34,17 @@ CREATE TABLE `auction` (
   `lowprice` int(11) NOT NULL,
   `uptime` datetime NOT NULL,
   `deadline` datetime NOT NULL,
-  `high-name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `high-price` int(11) NOT NULL
+  `high_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `high_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 資料表的匯出資料 `auction`
 --
 
-INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadline`, `high-name`, `high-price`) VALUES
-(19, 16, 2, 2, 100, '2016-12-12 11:08:00', '2016-12-12 12:00:00', '', 100),
-(20, 17, 3, 2, 100, '2016-12-12 23:00:00', '2017-12-12 01:00:00', '', 100);
+INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadline`, `high_name`, `high_price`) VALUES
+(20, 17, 3, 2, 100, '2016-12-12 23:00:00', '2017-12-12 01:00:00', '', 100),
+(25, 17, 4, 2, 500, '2015-12-31 12:59:00', '2016-12-30 12:59:00', '', 500);
 
 -- --------------------------------------------------------
 
@@ -97,8 +97,8 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
-(13, 16, 1, 0, 2, 2, 0, 0, 0, 5),
-(14, 17, 0, 2, 0, 2, 0, 0, 0, 0);
+(13, 16, 3, 470, 2, 2, 0, 0, 0, 5),
+(14, 17, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -120,7 +120,7 @@ CREATE TABLE `player` (
 
 INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES
 (16, '123', '123', '123', '1000'),
-(17, '456', '456', '456', '1000');
+(17, '456', '456', '456', '71512');
 
 -- --------------------------------------------------------
 
@@ -136,6 +136,31 @@ CREATE TABLE `record` (
   `price` int(11) NOT NULL,
   `deadline` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 資料表的匯出資料 `record`
+--
+
+INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`, `price`, `deadline`) VALUES
+(599, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
+(600, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
+(601, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
+(602, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
+(603, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(604, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(605, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(606, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(607, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(608, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(609, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(610, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(611, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(612, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(613, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(614, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(615, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(616, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
+(617, '456', '123', 'B', 512, '2016-12-13 00:00:00');
 
 --
 -- 已匯出資料表的索引
@@ -179,7 +204,7 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
@@ -199,7 +224,7 @@ ALTER TABLE `player`
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=618;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
