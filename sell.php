@@ -2,7 +2,7 @@
 require("dbconnect.php");
 function seeAuction(){
     global $conn; 
-    $sql = "select aid,cName,name,lowprice,num,deadline,uptime,`high-name`,`high-price` from auction,player,card 
+    $sql = "select aid,cName,name,lowprice,num,deadline,uptime,`high_name`,`high_price` from auction,player,card 
 where auction.uid=player.uid and card.cID=auction.cID";  
     return mysqli_query($conn,$sql);
 }
@@ -12,7 +12,7 @@ function up($uid, $cName, $num, $lowprice, $uptime, $deadline) {
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_assoc($result);
     $cID = $row['cID'];
-    $sql = "INSERT INTO `auction` (`aid`,`uid`,`cID`,`num`,`lowprice`,`uptime`,`deadline`,`high-name`,`high-price`) VALUES (NULL,'$uid','$cID',$num,'$lowprice','$uptime','$deadline','','$lowprice');";
+    $sql = "INSERT INTO `auction` (`aid`,`uid`,`cID`,`num`,`lowprice`,`uptime`,`deadline`,`high_name`,`high_price`) VALUES (NULL,'$uid','$cID',$num,'$lowprice','$uptime','$deadline','','$lowprice');";
     if(mysqli_query($conn,$sql))
         return true;
     else
@@ -20,7 +20,7 @@ function up($uid, $cName, $num, $lowprice, $uptime, $deadline) {
 }
 function changeAuc($aid,$name,$price){
     global $conn;
-    $sql = "update `auction` set `high-name`='$name', `high-price`='$price' where `auction`.`aid` = $aid";
+    $sql = "update `auction` set `high_name`='$name', `high_price`='$price' where `auction`.`aid` = $aid";
     return mysqli_query($conn,$sql);
 }
 function addmoney($hName,$high){
@@ -42,13 +42,13 @@ function submoney($name,$price,$money){
 }
 function seeRecord($uid) {
     global $conn;
-    $sql = "SELECT name,high-name,cName,deadline,high-price from player,auction where auction.uid=player.uid and auction.high-name=player.uid and card.cID=auction.cID";
+    $sql = "SELECT name,high_name,cName,deadline,high_price from player,auction where auction.uid=player.uid and auction.high_name=player.uid and card.cID=auction.cID";
     if ($result = mysqli_query($conn,$sql)) {
         while($row = mysqli_fetch_assoc($result)) {
             echo "<tr><td>{$row['name']}</td>";
-            echo "<td>{$row['high-name']}</td>";
+            echo "<td>{$row['high_name']}</td>";
             echo "<td>{$row['cName']}</td>";
-            echo "<td>{$row['high-price']}</td>";
+            echo "<td>{$row['high_price']}</td>";
             echo "<td>{$row['deadline']}</td></tr>";
         }
     } else {
