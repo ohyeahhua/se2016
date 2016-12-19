@@ -2,18 +2,56 @@
 require("dbconnect.php");
 require("sell.php");
 ?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+body {
+    color:black;
+    background: white url(./card/bg.jpg) center 60px fixed no-repeat;
+    background-size: 800px;
+}
+h1 {
+    text-shadow:2px 2px 2px DarkGray;
+}
+h2 {
+    font-family:cursive;
+    font-weight:bold;
+}
+#log{
+    margin:0px auto;
+    width:350px;
+    height:65px;
+    border-style:dashed;
+    border-color:DarkGrey;
+    border-width:2px;
+    background:rgba(220, 220, 220,0.3);
+    background-position:left;
+}
+#auc {
+    margin:35px;
+}
+</style>
+<title>WELCOME!</title>
+<h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
+</head>
+<body>
+<div id="log" align="center">
 <script type="text/javascript" src="jquery.js"></script>
 <form method="post" action="controller.php">
 <input type="hidden" name="act" value="login">
-LoginID: <input type="text" name="loginID">
-Password : <input type="password" name="pwd">
-<input type="submit">
-<a href="register.html">Register<a/>
+Login ID : <input type="text" name="loginID"><br/>
+Password : <input type="password" name="pwd"><br/>
+<input type="submit" value="登入">
+<a href="register.html" style="text-decoration:none;color:red">Register<a/>
 </form>
+</div>
+<hr></hr>
 <table id='auc' border='5' width='1000'>
 <script>
-load()
+load();
 function load() {
+    bag();
     $.ajax({
         url: "see.php",
 		dataType: 'html',
@@ -34,7 +72,7 @@ function load() {
                 }else if(upday>now){
                     continue;
                 }else{
-                    txt+="<td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].cName+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td></tr>";
+                    txt+="<td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td></tr>";
                 }
             }
             txt += "</table>";
@@ -58,6 +96,25 @@ function checkSale(auc){
 				alert('Ajax request failed!');
 				}
             });
+}
+function bag(){
+    now = new Date();
+    s = now.getSeconds();
+    if(s % 30 == 0){
+        $.ajax({
+            url: "bag.php",
+            dataType: 'html',
+            type: 'POST',
+            data: { name:'npc',
+                    cID:9,
+                    num:'1',
+                    price:(Math.random()*(500-300)+300),
+                  },
+            error: function(response) {
+                    alert('Ajax request failed!');
+                }
+            });
+    }
 }
 window.onload = function () {
     setInterval(function () {

@@ -1,7 +1,8 @@
 <?php
 require("dbconnect.php");
-require("sell.php");
+require("user.php");
 ?>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,38 +40,35 @@ h2 {
 <h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
 </head>
 <body>
-</script>
 <div id="ci">
+<table style="border:3px LimeGreen groove;" border='3' width='1000'>
+<tr  style="font-weight:bold" align="center" cellpadding="2">
+    <td>Card ID</td>
+    <td>Card Image</td>
+    <td>Card Name</td>
+    <td>Card Function</td>
+</tr>
 <div id="mp">
 <big><a href="profile.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">My Page<a/></big><br/>
-<big><a href="cInfor.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">Card Information<a/></big><br/>
+<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">My Record<a/></big><br/>
 <a href='controller.php?logout=true'><button id="logout">登出</button></a>
 </div>
-<h2>Your Record</h2>
-<table style="border:3px LimeGreen groove;text-align:center" border='5' width='500'>
-<tr>
-    <td>拍賣者</td>
-    <td>得標者</td>
-    <td>得標卡</td>
-    <td>得標金額</td>
-    <td>截止時間</td>
-</tr>
+<h2>Card Information</h2>
 <?php
-require("dbconnect.php");
-session_start();
-global $conn;
-$uid = $_SESSION['uid'];
-$name = $_SESSION['name'];
-$sql = "SELECT * from record,card where auc='$name' or bidder='$name' and card.cName = record.cName;";
-if ($result = mysqli_query($conn,$sql)) {
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><td>{$row['auc']}</td>";
-        echo "<td>{$row['bidder']}</td>";
-        echo "<td>{$row['Hname']}</td>";
-        echo "<td>{$row['price']}</td>";
-        echo "<td>{$row['deadline']}</td></tr>";
+$result = seeInfor();
+$i = 0;
+while($row = mysqli_fetch_assoc($result)){
+    if ($i < 8) {
+        echo "<tr align='center'><td style='font-size:1.0cm'>{$row['cID']}</td>";
+        echo "<td><img src='./card/c$i.jpg' style='width:200px'></img></td>";
+        echo "<td style='font-size:0.6cm;font-weight:bold'>{$row['Hname']}</td>";
+        echo "<td style='white-space:pre-wrap;font-size:0.6cm;font-weight:bold' align='justify'>{$row['function']}</td></tr>";
+        $i++;
     }
 }
 ?>
 </table>
 </div>
+<a href="profile.php"></a>
+</body>
+</html>

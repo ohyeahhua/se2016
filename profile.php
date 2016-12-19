@@ -1,4 +1,53 @@
-﻿<?php
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+body {
+    color:black;
+    background: white url(./card/bg.jpg) center 60px fixed no-repeat;
+    background-size: 800px;
+}
+h1 {
+    text-shadow:2px 2px 2px DarkGray;
+}
+h2 {
+    font-family:cursive;
+    font-weight:bold;
+    font-size:0.7cm;
+}
+#yc {
+    position:relative;
+    left:35px;
+}
+#ci {
+    position:absolute;
+    left:1100px;
+}
+#au {
+    position:relative;
+    left:35px;
+}
+input[type="submit"]{
+    padding:5px 10px; 
+    background:WhiteSmoke; 
+    border:0 none;
+    cursor:pointer;
+    border-radius: 5px; 
+}
+#logout {
+    padding:5px 10px; 
+    background:Gainsboro; 
+    border:0 none;
+    cursor:pointer;
+    border-radius: 5px;
+}
+</style>
+<title>WELCOME!</title>
+<h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
+</head>
+<body>
+<div id="yc">
+<?php
 require("sell.php");
 require("user.php");
 if(isset($_SESSION['name'])){
@@ -19,8 +68,10 @@ if(isset($_GET['type'])&&isset($_GET['nnum'])){
 hi(uid);
 load();
 card(uid);
+var cards = ["歧視的川普","悲傷之音-Si La Re","進擊的小英","小馬愛說笑","阿扁口袋深","做好做滿倫","安倍三把箭","欲罷不能的阿惠"];
 function load() {
-    
+    hi(uid);
+    bag();
     card(uid);
     $.ajax({
         url: "see.php",
@@ -38,13 +89,21 @@ function load() {
                 upday = new Date(jsdata[i]['uptime']);
                 time=Math.floor((tday-now)/1000);
                 if(time<=0){
-                    if(jsdata[i].high_name == name)
-                        alert("Congregation! Your bid has won!");
-                    checkSale(jsdata[i]);
+                    f = Math.floor(Math.random()*8);
+                    s = Math.floor(Math.random()*8);
+                    t = Math.floor(Math.random()*8);
+                    if(jsdata[i].high_name == name){
+                        if(jsdata[i].name=='npc'){
+                            alert("Congregation! You has won a fukubukuro!\n"+cards[f]+"\n"+cards[s]+"\n"+cards[t]);
+                        }
+                        else
+                            alert("Congregation! Your bid("+jsdata[i].aid+") has won!");
+                    }
+                    checkSale(jsdata[i],f,s,t);
                 }else if(upday>now){
                     continue;
                 }else{
-                    txt+="<td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].cName+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
+                    txt+="<td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
                     if(jsdata[i].name==name||jsdata[i].high_name==name)
                         txt+="<td>我要出價</td></tr>";
                     else
@@ -67,7 +126,7 @@ function card(uid){
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
-            txt = '<tr><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td></tr>';
+            txt = '<tr><td>歧視的川普</td><td>悲傷之音-Si La Re</td><td>進擊的小英</td><td>小馬愛說笑</td><td>阿扁口袋深</td><td>做好做滿倫</td><td>安倍三把箭</td><td>欲罷不能的阿惠</td></tr>';
             txt += "<tr><td>"+"<a href='profile.php?type=A&nnum="+jsdata.A+"'>"+jsdata.A+"</a>"+"</td><td>"+"<a href='profile.php?type=B&nnum="+jsdata.B+"'>"+jsdata.B+"</a>"+"</td><td>"+"<a href='profile.php?type=C&nnum="+jsdata.C+"'>"+jsdata.C+"</a>"+"</td><td>"+"<a href='profile.php?type=D&nnum="+jsdata.D+"'>"+jsdata.D+"</a>"+"</td><td>"+"<a href='profile.php?type=E&nnum="+jsdata.E+"'>"+jsdata.E+"</a>"+"</td><td>"+"<a href='profile.php?type=F&nnum="+jsdata.F+"'>"+jsdata.F+"</a>"+"</td><td>"+"<a href='profile.php?type=G&nnum="+jsdata.G+"'>"+jsdata.G+"</a>"+"</td><td>"+"<a href='profile.php?type=H&nnum="+jsdata.H+"'>"+jsdata.H+"</a>"+"</td></tr>";
             txt += "</table>";
             document.getElementById("card").innerHTML=txt;
@@ -90,7 +149,7 @@ function hi(uid){
 		}
     });
 }
-function checkSale(auc){
+function checkSale(auc,f,s,t){
     $.ajax({
 		url: "json.php",
 		dataType: 'html',
@@ -99,6 +158,9 @@ function checkSale(auc){
                 name:auc.name,
                 cName:auc.cName,
                 num:auc.num,
+                first:f,
+                second:s,
+                third:t,
                 hName:auc.high_name,
                 price:auc.high_price,
                 deadline:auc.deadline},
@@ -142,40 +204,58 @@ $.ajax({
 		}
     });
 }
+function bag(){
+    now = new Date();
+    s = now.getSeconds();
+    if(s % 30 == 0){
+        $.ajax({
+            url: "bag.php",
+            dataType: 'html',
+            type: 'POST',
+            data: { name:'npc',
+                    cID:9,
+                    num:'1',
+                    price:(Math.random()*(500-300)+300),
+                  },
+            error: function(response) {
+                    alert('Ajax request failed!');
+                }
+            });
+    }
+}
 window.onload = function () {
     setInterval(function () {
 		load()
     }, 1000);
 };
 </script>
-<table>
-<tr>
-<td><a href='record.php'><button>Record</button></a></td>
-<td><button onclick='changeMoney()'>變賣卡片</button></td>
-<td><a href='controller.php?logout=true'><button>登出</button></a></td>
-</tr>
-</table>
-<hr></hr>
-<h2>Your card<h2>
-<table id='card' border='5' width='500'>
+<div id="ci">
+<big><a href="cInfor.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">Card Information<a/></big><br/>
+<big><a href='javascript: changeMoney()' style="font-family:Century Gothic;font-weight:bold;text-decoration:none">Money Exchange</a></big><br/>
+<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">My Record<a/></big><br/>
+<a href='controller.php?logout=true'><button id="logout">登出</button></a>
+</div>
+
+<h2 style="margin-top:-15px">Your card<h2>
+<table style="border:3px LimeGreen groove;text-align:center" id='card' border='5' width='1000'>
 
 </table>
 <form method='post' action='controller.php'>
 <input type='hidden' name='act' value='up'>
-Type:<input type='text' name='type' value='<?php echo "$type"?>'>
-Amount:<input type='text' name='num' value='<?php echo "$nnum"?>' >
+<small>Type:</small><input type='text' name='type' size="3" value='<?php echo "$type"?>'>
+<small>Amount:</small><input type='text' name='num' size="3" value='<?php echo "$nnum"?>' >
 <input type='hidden' name='nnum' value='<?php echo "$nnum"?>'>
-底價:<input type='text' name='lowprice' >
-上架時間:<input type='date' name='update' ><input type='time' name='uptime' >
-截止時間:<input type='date' name='deaddate' ><input type='time' name='deadtime' >
+<small>底價:</small><input type='text' name='lowprice' size="5"></br>
+<small>上架時間 : </small><input type='date' name='update' ><input type='time' name='uptime' ></br>
+<small>截止時間 : </small><input type='date' name='deaddate' ><input type='time' name='deadtime' >
 <input type='submit' value='確認'>
 </form>
+</div>
 <hr></hr>
 
-
+<div id="au">
 <h2>AUCTION</h2>
-<table id='auc' border='5' width='1000'>
-
+<table style="border:3px LimeGreen groove;text-align:center" cellpadding="2" id='auc' border='5' width='1000'>
 </table>
 <?php
 if(isset($_GET['aid'])){
@@ -190,6 +270,4 @@ if(isset($_GET['aid'])){
     echo "<td><input type='submit' value='確認'></form></td></tr></table>";
 }
 ?>
-<table id='bag' border='5' style="display:none;" width='1000'>
-
-</table>
+</div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-15 06:49:10
+-- 產生時間： 2016-12-19 12:51:57
 -- 伺服器版本: 10.1.13-MariaDB
 -- PHP 版本： 5.6.21
 
@@ -38,14 +38,6 @@ CREATE TABLE `auction` (
   `high_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 資料表的匯出資料 `auction`
---
-
-INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadline`, `high_name`, `high_price`) VALUES
-(20, 17, 3, 2, 100, '2016-12-12 23:00:00', '2017-12-12 01:00:00', '', 100),
-(25, 17, 4, 2, 500, '2015-12-31 12:59:00', '2016-12-30 12:59:00', '', 500);
-
 -- --------------------------------------------------------
 
 --
@@ -54,24 +46,25 @@ INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadli
 
 CREATE TABLE `card` (
   `cID` int(11) NOT NULL,
-  `cName` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `function` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `Hname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `function` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `cName` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 資料表的匯出資料 `card`
 --
 
-INSERT INTO `card` (`cID`, `cName`, `function`) VALUES
-(1, 'A', ''),
-(2, 'B', ''),
-(3, 'C', ''),
-(4, 'D', ''),
-(5, 'E', ''),
-(6, 'F', ''),
-(7, 'G', ''),
-(8, 'H', ''),
-(9, '福袋', '');
+INSERT INTO `card` (`cID`, `Hname`, `function`, `cName`) VALUES
+(1, '歧視的川普', '攻擊力 3000\r\n守備力 2000\r\n擅長說出爭議言論使人惱怒\r\n突襲般地騷擾女性使人毫無招架之力', 'A'),
+(2, '悲傷之音-Si La Re', '攻擊力 3500\r\n守備力 2000\r\n不停彈奏悲傷三單音-Si La Re\r\n使對手陷入絕望的深淵', 'B'),
+(3, '進擊的小英', '攻擊力 2800\r\n守備力 1800\r\n只要一出現\r\n就會使對手的攻擊力掉至五成', 'C'),
+(4, '小馬愛說笑', '攻擊力 2400\r\n守備力 2000\r\n說笑話戳中對手笑點後\r\n再趁機發動攻擊', 'D'),
+(5, '阿扁口袋深', '攻擊力 3800\r\n守備力 2500\r\n能吸取對手的攻擊力\r\n直至對手認輸或死亡', 'E'),
+(6, '做好做滿倫', '攻擊力 2000\r\n守備力 1800\r\n以三寸不爛之舌\r\n說的對手頭昏眼花', 'F'),
+(7, '安倍三把箭', '攻擊力 2500\r\n守備力 3000\r\n具備修復能力\r\n能將隊友恢復百分百戰鬥力', 'G'),
+(8, '欲罷不能的阿惠', '攻擊力 500\r\n守備力 500\r\n直接將自己的弱點暴露於對手', 'H'),
+(9, '福袋', '', '');
 
 -- --------------------------------------------------------
 
@@ -92,14 +85,6 @@ CREATE TABLE `inventory` (
   `H` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 資料表的匯出資料 `inventory`
---
-
-INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
-(13, 16, 3, 470, 2, 2, 0, 0, 0, 5),
-(14, 17, 0, 0, 0, 0, 0, 0, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -119,8 +104,7 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES
-(16, '123', '123', '123', '1000'),
-(17, '456', '456', '456', '71512');
+(0, 'root', 'npc', 'root', '1009079');
 
 -- --------------------------------------------------------
 
@@ -136,31 +120,6 @@ CREATE TABLE `record` (
   `price` int(11) NOT NULL,
   `deadline` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- 資料表的匯出資料 `record`
---
-
-INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`, `price`, `deadline`) VALUES
-(599, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
-(600, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
-(601, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
-(602, '456', '123', 'B', 0, '2016-12-13 00:00:00'),
-(603, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(604, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(605, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(606, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(607, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(608, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(609, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(610, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(611, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(612, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(613, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(614, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(615, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(616, '456', '123', 'B', 5000, '2016-12-13 00:00:00'),
-(617, '456', '123', 'B', 512, '2016-12-13 00:00:00');
 
 --
 -- 已匯出資料表的索引
@@ -204,7 +163,7 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
@@ -224,7 +183,7 @@ ALTER TABLE `player`
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=618;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=640;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -45,4 +45,9 @@ function change($uid,$cName,$nnum,$num){
     $sql="update inventory set $cName ='$tmp' where uid='$uid';";
     mysqli_query($conn,$sql);
 } 
+function seeInfor() {
+    global $conn;
+    $sql = "SELECT * from card order by cID asc;";
+    return mysqli_query($conn,$sql);
+}
 ?>
