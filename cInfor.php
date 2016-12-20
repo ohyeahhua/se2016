@@ -12,7 +12,17 @@ body {
     background: white url(./card/bg.jpg) center 60px fixed no-repeat;
     background-size: 800px;
 }
+#bbg {
+    width:720px;
+    position:absolute;
+    left:323px;
+    margin-top:-226px;
+    z-index:-1;
+}
 h1 {
+    position:relative;
+    text-align:center;
+    top:35px;
     text-shadow:2px 2px 2px DarkGray;
 }
 h2 {
@@ -38,6 +48,7 @@ h2 {
 </style>
 <title>WELCOME!</title>
 <h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
+<img  id="bbg" src="./card/bbg.png" />
 </head>
 <body>
 <div id="ci">
@@ -49,11 +60,11 @@ h2 {
     <td>Card Function</td>
 </tr>
 <div id="mp">
-<big><a href="profile.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">My Page<a/></big><br/>
-<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">My Record<a/></big><br/>
+<big><a href="profile.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">My Page<a/></big><br/>
+<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">My Record<a/></big><br/>
 <a href='controller.php?logout=true'><button id="logout">登出</button></a>
 </div>
-<h2>Card Information</h2>
+<h2 style="margin-top:100px">Card Information</h2>
 <?php
 $result = seeInfor();
 $i = 0;

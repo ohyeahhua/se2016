@@ -7,7 +7,17 @@ body {
     background: white url(./card/bg.jpg) center 60px fixed no-repeat;
     background-size: 800px;
 }
+img {
+    width:720px;
+    position:absolute;
+    left:330px;
+    margin-top:-226px;
+    z-index:-1;
+}
 h1 {
+    position:relative;
+    text-align:center;
+    top:35px;
     text-shadow:2px 2px 2px DarkGray;
 }
 h2 {
@@ -29,7 +39,7 @@ h2 {
 }
 input[type="submit"]{
     padding:5px 10px; 
-    background:WhiteSmoke; 
+    background:Gainsboro; 
     border:0 none;
     cursor:pointer;
     border-radius: 5px; 
@@ -44,6 +54,7 @@ input[type="submit"]{
 </style>
 <title>WELCOME!</title>
 <h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
+<img src="./card/bbg.png" />
 </head>
 <body>
 <div id="yc">
@@ -51,7 +62,7 @@ input[type="submit"]{
 require("sell.php");
 require("user.php");
 if(isset($_SESSION['name'])){
-    echo "<h2 id='hi'></h2>";
+    echo "<h2 id='hi' style='margin-top:100px'></h2>";
     echo "<script>var uid = {$_SESSION['uid']};var name = '{$_SESSION['name']}';</script>";
 }else
     echo "<h2>Hi, please login</h2>";
@@ -82,7 +93,7 @@ function load() {
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
-            txt = '<tr><td>交易序號</td><td>Name</td><td>card</td><td>數量</td><td>底價</td><td>截止時間</td><td>剩餘時間</td><td>目前最高者</td><td>目前金額</td><td>出價</td></tr>';
+            txt = '<tr align="center" style="font-weight:bold"><td>交易序號</td><td>Name</td><td>Card</td><td>數量</td><td>底價</td><td>截止時間</td><td>剩餘時間</td><td>目前最高者</td><td>目前金額</td><td>出價</td></tr>';
             for(var i=0;i<jsdata.length;i++){
                 now= new Date();
                 tday=new Date(jsdata[i]['deadline']);
@@ -126,7 +137,7 @@ function card(uid){
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
-            txt = '<tr><td>歧視的川普</td><td>悲傷之音-Si La Re</td><td>進擊的小英</td><td>小馬愛說笑</td><td>阿扁口袋深</td><td>做好做滿倫</td><td>安倍三把箭</td><td>欲罷不能的阿惠</td></tr>';
+            txt = '<tr style="font-weight:bold"><td>歧視的川普</td><td>悲傷之音-Si La Re</td><td>進擊的小英</td><td>小馬愛說笑</td><td>阿扁口袋深</td><td>做好做滿倫</td><td>安倍三把箭</td><td>欲罷不能的阿惠</td></tr>';
             txt += "<tr><td>"+"<a href='profile.php?type=A&nnum="+jsdata.A+"'>"+jsdata.A+"</a>"+"</td><td>"+"<a href='profile.php?type=B&nnum="+jsdata.B+"'>"+jsdata.B+"</a>"+"</td><td>"+"<a href='profile.php?type=C&nnum="+jsdata.C+"'>"+jsdata.C+"</a>"+"</td><td>"+"<a href='profile.php?type=D&nnum="+jsdata.D+"'>"+jsdata.D+"</a>"+"</td><td>"+"<a href='profile.php?type=E&nnum="+jsdata.E+"'>"+jsdata.E+"</a>"+"</td><td>"+"<a href='profile.php?type=F&nnum="+jsdata.F+"'>"+jsdata.F+"</a>"+"</td><td>"+"<a href='profile.php?type=G&nnum="+jsdata.G+"'>"+jsdata.G+"</a>"+"</td><td>"+"<a href='profile.php?type=H&nnum="+jsdata.H+"'>"+jsdata.H+"</a>"+"</td></tr>";
             txt += "</table>";
             document.getElementById("card").innerHTML=txt;
@@ -230,9 +241,9 @@ window.onload = function () {
 };
 </script>
 <div id="ci">
-<big><a href="cInfor.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">Card Information<a/></big><br/>
-<big><a href='javascript: changeMoney()' style="font-family:Century Gothic;font-weight:bold;text-decoration:none">Money Exchange</a></big><br/>
-<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none">My Record<a/></big><br/>
+<big><a href="cInfor.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">Card Information<a/></big><br/>
+<big><a href='javascript: changeMoney()' style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">Money Exchange</a></big><br/>
+<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">My Record<a/></big><br/>
 <a href='controller.php?logout=true'><button id="logout">登出</button></a>
 </div>
 

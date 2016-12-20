@@ -11,7 +11,17 @@ body {
     background: white url(./card/bg.jpg) center 60px fixed no-repeat;
     background-size: 800px;
 }
+img {
+    width:720px;
+    position:absolute;
+    left:330px;
+    margin-top:-226px;
+    z-index:-1;
+}
 h1 {
+    position:relative;
+    text-align:center;
+    top:35px;
     text-shadow:2px 2px 2px DarkGray;
 }
 h2 {
@@ -20,6 +30,7 @@ h2 {
 }
 #log{
     margin:0px auto;
+    margin-top:80px;
     width:350px;
     height:65px;
     border-style:dashed;
@@ -33,7 +44,8 @@ h2 {
 }
 </style>
 <title>WELCOME!</title>
-<h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
+<h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm">World Hegemony Battle</h1>
+<img src="./card/bbg.png" />
 </head>
 <body>
 <div id="log" align="center">
@@ -43,7 +55,7 @@ h2 {
 Login ID : <input type="text" name="loginID"><br/>
 Password : <input type="password" name="pwd"><br/>
 <input type="submit" value="登入">
-<a href="register.html" style="text-decoration:none;color:red">Register<a/>
+<input type="button" value="Register" onclick="location.href='register.html'">
 </form>
 </div>
 <hr></hr>
@@ -61,7 +73,7 @@ function load() {
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
-            txt = '<tr><td>交易序號</td><td>Name</td><td>card</td><td>數量</td><td>底價</td><td>截止時間</td><td>剩餘時間</td><td>目前最高者</td><td>目前金額</td></tr>';
+            txt = '<tr align="center" style="font-weight:bold"><td>交易序號</td><td>Name</td><td>Card</td><td>數量</td><td>底價</td><td>截止時間</td><td>剩餘時間</td><td>目前最高者</td><td>目前金額</td></tr>';
             for(var i=0;i<jsdata.length;i++){
                 now= new Date();
                 tday=new Date(jsdata[i]['deadline']);

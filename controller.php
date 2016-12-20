@@ -36,12 +36,17 @@ switch($act) {
         $nnum = $_POST['nnum'];
         if($nnum < $num){
             echo "<script>alert('Too many, please try again.'); window.location='profile.php';</script> ";
+            exit(0);
         }
         $uid = $_SESSION['uid'];
         $cName = $_POST['type'];
         $lowprice = $_POST['lowprice'];
         $uptime = $_POST['update']." ".$_POST['uptime'].":00";
         $deadline = $_POST['deaddate']." ".$_POST['deadtime'].":00";
+        if($uptime > $deadline){
+            echo "<script>alert('Wrong date!'); window.location='profile.php';</script> ";
+            exit(0);
+        }
         if (up($uid, $cName,$num, $lowprice, $uptime, $deadline)) {
             change($uid, $cName, $nnum,$num);
             echo "<script>alert('Successfully.'); window.location='profile.php';</script> ";
@@ -54,10 +59,12 @@ switch($act) {
         $money = $_SESSION['money'];
         if($price > $money){
             echo "<script>alert('You don\'t have enough money.'); window.location='profile.php';</script>";
+            exit(0);
         }
         $high = $_POST['high'];
         if($price <= $high){
-            echo "<script>alert('Failed.'); window.location='profile.php';</script>";
+            echo "<script>alert('You need to raise higher!'); window.location='profile.php';</script>";
+            exit(0);
         }
         $hName = $_POST['hName'];
         $aid = $_POST['aid'];

@@ -2,7 +2,7 @@
 require("dbconnect.php");
 function seeAuction(){
     global $conn; 
-    $sql = "select aid,Hname,player.name,lowprice,num,deadline,uptime,`high_name`,`high_price` from auction,player,card 
+    $sql = "select aid,Hname,cName,player.name,lowprice,num,deadline,uptime,`high_name`,`high_price` from auction,player,card 
 where auction.uid=player.uid and card.cID=auction.cID";  
     return mysqli_query($conn,$sql);
 }

@@ -1,9 +1,52 @@
-<h1>Register</h1><hr />
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+body {
+    color:black;
+    background: white url(./card/bg.jpg) center 60px fixed no-repeat;
+    background-size: 800px;
+}
+img {
+    width:720px;
+    position:absolute;
+    left:330px;
+    margin-top:-226px;
+    z-index:-1;
+}
+h1 {
+    position:relative;
+    text-align:center;
+    top:35px;
+    text-shadow:2px 2px 2px DarkGray;
+}
+h2 {
+    margin-top:90px;
+}
+#register{
+    margin:0px auto;
+    width:350px;
+    height:90px;
+    border-style:dashed;
+    border-color:DarkGrey;
+    border-width:2px;
+    background:rgba(200, 200, 200,0.3);
+    background-position:left;
+}
+</style>
+<title>WELCOME!</title>
+<h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
+<img src="./card/bbg.png" />
+</head>
+<body>
+<h2 align="center">Register</h2><hr />
+<div id="register" align="center">
 <form method="post" action="controller.php">
 <input type="hidden" name="act" value="register">
-LoginID: <input type="text" name="loginID"><br />
+Login ID : <input type="text" name="loginID"><br />
 Password : <input type="password" name="pwd"><br />
 Name : <input type="text" name="name"><br />
-<input type="submit">
-<a href="index.php">ªð¦^µn¤J­¶­±<a/>
+<input type="submit" value="ç¢ºå®š">
+<input type="button" value="è¿”å›ž" onclick="location.href='index.php'">
 </form>
+</div>
