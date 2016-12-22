@@ -1,6 +1,7 @@
+
 <link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css" rel="stylesheet">  
-<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css" rel="stylesheet"> 
-<script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script>  
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css" rel="stylesheet">  
+<script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script>
 <?php
 require("user.php");
 require("sell.php");
@@ -69,12 +70,6 @@ switch($act) {
             echo "<script>alert('You need to raise higher!'); window.location='profile.php';</script>";
             exit(0);
         }
-        $deadline = $_POST['deadline'];
-        $now = Date("Y-m-d H:i:s",strtotime("+420 minutes"));
-        if($deadline < $now){
-            echo "<script>alert('Time\'s up'); window.location='profile.php';</script>";
-            exit(0);
-        }          
         $hName = $_POST['hName'];
         $aid = $_POST['aid'];
         $name = $_SESSION['name'];

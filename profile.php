@@ -75,6 +75,9 @@ if(isset($_GET['type'])&&isset($_GET['nnum'])){
 }
 ?>
 <script type="text/javascript" src="jquery.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css" rel="stylesheet">  
+<link href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css" rel="stylesheet">  
+<script src="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.min.js"></script>  
 <script>
 hi(uid);
 load();
@@ -89,7 +92,7 @@ function load() {
 		dataType: 'html',
         type: 'POST',
         error: function(response) {
-			alert('Ajax request failed!');
+			alertify.alert('Ajax request failed!');
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
@@ -105,10 +108,10 @@ function load() {
                     t = Math.floor(Math.random()*8);
                     if(jsdata[i].high_name == name){
                         if(jsdata[i].name=='npc'){
-                            alert("Congregation! You has won a fukubukuro!\n"+cards[f]+"\n"+cards[s]+"\n"+cards[t]);
+                            alertify.alert("Congregation! You has won a fukubukuro!\n"+cards[f]+"\n"+cards[s]+"\n"+cards[t]);
                         }
                         else
-                            alert("Congregation! Your bid("+jsdata[i].aid+") has won!");
+                            alertify.alert("Congregation! Your bid("+jsdata[i].aid+") has won!");
                     }
                     checkSale(jsdata[i],f,s,t);
                 }else if(upday>now){
@@ -118,7 +121,7 @@ function load() {
                     if(jsdata[i].name==name||jsdata[i].high_name==name)
                         txt+="<td>我要出價</td></tr>";
                     else
-                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"'>我要出價</a></td></tr>";
+                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"&deadline="+jsdata[i].deadline+"'>我要出價</a></td></tr>";
                 }
             }
             txt += "</table>";
@@ -133,7 +136,7 @@ function card(uid){
         type: 'POST',
         data:{id:uid},
         error: function(response) {
-			alert('Ajax request failed!');
+			alertify.alert('Ajax request failed!');
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
@@ -151,7 +154,7 @@ function hi(uid){
         type: 'POST',
         data:{id:uid},
         error: function(response) {
-			alert('Ajax request failed!');
+			alertify.alert('Ajax request failed!');
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
@@ -176,7 +179,7 @@ function checkSale(auc,f,s,t){
                 price:auc.high_price,
                 deadline:auc.deadline},
 			error: function(response) {
-				alert('Ajax request failed!');
+				alertify.alert('Ajax request failed!');
 				}
             });
 }
@@ -187,12 +190,12 @@ function changeMoney(){
         type: 'POST',
         data:{id:uid},
         error: function(response) {
-			alert('Ajax request failed!');
+			alertify.alert('Ajax request failed!');
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
             if(jsdata.A<1 || jsdata.B<1 || jsdata.C<1 || jsdata.D<1 || jsdata.E<1 || jsdata.F<1 || jsdata.G<1 || jsdata.H<1)
-                alert("You don't have enough card!");
+                alertify.alert("You don't have enough card!");
             else{
                 var r=confirm("Are you sure?");
                 if(r==true)
@@ -208,10 +211,10 @@ $.ajax({
         type: 'POST',
         data:{id:uid},
         error: function(response) {
-			alert('Ajax request failed!');
+			alertify.alert('Ajax request failed!');
 			},
 		success: function() {
-            alert("Exchange successfully!");
+            alertify.alert("Exchange successfully!");
 		}
     });
 }
@@ -229,7 +232,7 @@ function bag(){
                     price:(Math.random()*(500-300)+300),
                   },
             error: function(response) {
-                    alert('Ajax request failed!');
+                    alertify.alert('Ajax request failed!');
                 }
             });
     }
@@ -274,6 +277,7 @@ if(isset($_GET['aid'])){
     echo "<form method='post' action='controller.php'>";
     echo "<input type='hidden' name='high' value='{$_GET['high']}'>";
     echo "<input type='hidden' name='hName' value='{$_GET['hName']}'>";
+    echo "<input type='hidden' name='deadline' value='{$_GET['deadline']}'>";
     echo "<input type='hidden' name='act' value='raised'>";
     echo "<input type='hidden' name='aid' value='$aid'>";
     echo "<table border='5' width='500'><tr><td>交易序號:$aid</td>";
