@@ -22,12 +22,12 @@ function checkUser($loginID, $pwd){
 function register($loginID,$pwd,$name){
     global $conn;
     $loginID =mysqli_real_escape_string($conn,$loginID);
-    $sql = "INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES (NULL, '$loginID', '$name', '$pwd', '1000');";
+    $sql = "INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES (NULL, '$loginID', '$name', '$pwd', '3000');";
     if ($result = mysqli_query($conn,$sql)){
         $sql ="select uid from player where loginID = '$loginID'";
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_assoc($result);
-        $sql = "INSERT INTO `inventory` (`uid`,`A`,`B`,`C`,`D`,`E`,`F`,`G`,`H`) VALUES ('{$row['uid']}',2,2,2,2,0,0,0,0)";
+        $sql = "INSERT INTO `inventory` (`uid`,`A`,`B`,`C`,`D`,`E`,`F`,`G`,`H`) VALUES ('{$row['uid']}',3,3,3,3,3,3,3,3)";
         $result = mysqli_query($conn,$sql);
         return true;
     }else{

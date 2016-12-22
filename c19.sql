@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-22 17:28:19
+-- 產生時間： 2016-12-19 12:51:57
 -- 伺服器版本: 10.1.13-MariaDB
--- PHP 版本： 7.0.5
+-- PHP 版本： 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -37,21 +37,6 @@ CREATE TABLE `auction` (
   `high_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `high_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- 資料表的匯出資料 `auction`
---
-
-INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadline`, `high_name`, `high_price`) VALUES
-(583, 1, 1, 1, 500, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 500),
-(587, 2, 4, 2, 600, '2016-12-22 05:00:00', '2016-12-26 12:00:00', '', 600),
-(591, 1, 5, 1, 300, '2016-12-22 12:00:00', '2016-12-26 12:00:00', '', 300),
-(594, 4, 6, 2, 400, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 400),
-(597, 8, 7, 1, 250, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 250),
-(600, 6, 5, 3, 800, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 800),
-(603, 8, 1, 1, 300, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 300),
-(605, 0, 9, 1, 474, '2016-12-22 17:27:30', '2016-12-22 17:28:25', '', 474),
-(606, 0, 9, 1, 458, '2016-12-22 17:28:00', '2016-12-22 17:28:30', '', 458);
 
 -- --------------------------------------------------------
 
@@ -100,13 +85,6 @@ CREATE TABLE `inventory` (
   `H` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 資料表的匯出資料 `inventory`
---
-
-INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
-(15, 18, 2, 2, 2, 2, 1, 1, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -126,22 +104,7 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES
-(0, 'root', 'NPC', 'root', '1009404'),
-(1, '1', 'Sam', '1', '3000'),
-(2, '2', 'Ming', '2', '3000'),
-(3, '3', 'Hua', '3', '2000'),
-(4, '4', 'Flower', '4', '4500'),
-(5, '5', 'Jack', '5', '2500'),
-(6, 'Lucy', '6', '6', '5000'),
-(7, 'Jessica', '7', '7', '3500'),
-(8, '8', 'John', '8', '3200'),
-(9, '9', 'Lulu', '9', '4200'),
-(10, '10', 'Denny', '10', '2600'),
-(11, '11', 'Pets', '11', '5400'),
-(12, '12', 'Ray', '12', '4100'),
-(13, '13', 'Hanna', '13', '3400'),
-(14, '14', 'Max', '14', '2900'),
-(15, '15', 'Chi', '15', '3600');
+(0, 'root', 'npc', 'root', '1009079');
 
 -- --------------------------------------------------------
 
@@ -200,7 +163,7 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=607;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
@@ -210,17 +173,17 @@ ALTER TABLE `card`
 -- 使用資料表 AUTO_INCREMENT `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- 使用資料表 AUTO_INCREMENT `player`
 --
 ALTER TABLE `player`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=641;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=640;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -16,9 +16,11 @@ global $conn;
 if($hName != ""){
     $sql="INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`, `price`, `deadline`) VALUES (NULL, '$name', '$hName', '$cName', '$price', '$deadline');";
     $result = mysqli_query($conn,$sql);
-    if($name=='npc'){
+    if($name=='NPC'){
         $sql="update inventory,player set $cards[$f]=$cards[$f]+1 where name='$hName' and player.uid = inventory.uid;";
         $result = mysqli_query($conn,$sql);
+        if($result)
+            echo "<script>alert('123')</script>";
         $sql="update inventory,player set $cards[$s]=$cards[$s]+1 where name='$hName' and player.uid = inventory.uid;";
         $result = mysqli_query($conn,$sql);
         $sql="update inventory,player set $cards[$t]=$cards[$t]+1 where name='$hName' and player.uid = inventory.uid;"; 

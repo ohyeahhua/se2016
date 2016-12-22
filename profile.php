@@ -6,6 +6,8 @@ body {
     color:black;
     background: white url(./card/bg.jpg) center 60px fixed no-repeat;
     background-size: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 img {
     width:720px;
@@ -96,7 +98,7 @@ function load() {
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
-            txt = '<tr align="center" style="font-weight:bold"><td>交易序號</td><td>Name</td><td>Card</td><td>數量</td><td>底價</td><td>截止時間</td><td>剩餘時間</td><td>目前最高者</td><td>目前金額</td><td>出價</td></tr>';
+            txt = '<tr align="center" style="font-weight:bold"><td>交易序號</td><td>Name</td><td>Card</td><td>數量</td><td>底價</td><td>截止時間</td><td>剩餘時間</td><td>目前最高者</td><td>目前金額</td><td width="100">出價</td></tr>';
             for(var i=0;i<jsdata.length;i++){
                 now= new Date();
                 tday=new Date(jsdata[i]['deadline']);
@@ -107,8 +109,8 @@ function load() {
                     s = Math.floor(Math.random()*8);
                     t = Math.floor(Math.random()*8);
                     if(jsdata[i].high_name == name){
-                        if(jsdata[i].name=='npc'){
-                            alertify.alert("Congregation! You has won a fukubukuro!\n"+cards[f]+"\n"+cards[s]+"\n"+cards[t]);
+                        if(jsdata[i].name=='NPC'){
+                            alertify.alert("Congregation! You has won a fukubukuro!"+"</br>1."+cards[f]+"</br>2."+cards[s]+"</br>3."+cards[t]);
                         }
                         else
                             alertify.alert("Congregation! Your bid("+jsdata[i].aid+") has won!");
@@ -117,11 +119,14 @@ function load() {
                 }else if(upday>now){
                     continue;
                 }else{
-                    txt+="<td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
-                    if(jsdata[i].name==name||jsdata[i].high_name==name)
-                        txt+="<td>我要出價</td></tr>";
+                    if(jsdata[i].name == 'NPC')
+                        txt+="<tr style='background-color:gainsboro'><td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
                     else
-                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"&deadline="+jsdata[i].deadline+"'>我要出價</a></td></tr>";
+                        txt+="<tr><td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
+                    if(jsdata[i].name==name||jsdata[i].high_name==name)
+                        txt+="<td><button>X</button></td></tr>";
+                    else
+                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"&deadline="+jsdata[i].deadline+"'><button>我要出價</button></a></td></tr>";
                 }
             }
             txt += "</table>";
@@ -237,6 +242,28 @@ function bag(){
             });
     }
 }
+function rank(){
+$.ajax({
+        url: "rank.php",
+		dataType: 'html',
+        type: 'POST',
+        data:{id:uid},
+        error: function(response) {
+			alertify.alert('Ajax request failed!');
+			},
+		success: function(rank) {
+            ranks = jQuery.parseJSON(rank);
+            txt ="<h2>Rank<h2><table border='5' width ='500'><tr><td>Rank</td><td>Name</td><td>Money</td></tr>";
+            for(i = 0; i < ranks.length; i++){
+                if(ranks[i].name == name)
+                    txt +="<tr bgcolor='#FF0000'><td>"+ranks[i].rank+"</td><td>"+ranks[i].name+"</td><td>"+ranks[i].money+"</td></tr>";
+                else 
+                    txt +="<tr><td>"+ranks[i].rank+"</td><td>"+ranks[i].name+"</td><td>"+ranks[i].money+"</td></tr>";
+            }
+            txt +='</table>';
+            alertify.alert(txt);
+		}
+    });}
 window.onload = function () {
     setInterval(function () {
 		load()
@@ -247,6 +274,7 @@ window.onload = function () {
 <big><a href="cInfor.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">Card Information<a/></big><br/>
 <big><a href='javascript: changeMoney()' style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">Money Exchange</a></big><br/>
 <big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">My Record<a/></big><br/>
+<button id="logout" onclick='rank()'>Rank</button></a>
 <a href='controller.php?logout=true'><button id="logout">登出</button></a>
 </div>
 

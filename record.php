@@ -10,6 +10,8 @@ body {
     color:black;
     background: white url(./card/bg.jpg) center 60px fixed no-repeat;
     background-size: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 img {
     width:720px;
