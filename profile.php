@@ -120,13 +120,13 @@ function load() {
                     continue;
                 }else{
                     if(jsdata[i].name == 'NPC')
-                        txt+="<tr style='background-color:gainsboro'><td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
+                        txt+="<tr style='background-color:gold'><td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
                     else
                         txt+="<tr><td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
                     if(jsdata[i].name==name||jsdata[i].high_name==name)
                         txt+="<td><button>X</button></td></tr>";
                     else
-                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"&deadline="+jsdata[i].deadline+"'><button>我要出價</button></a></td></tr>";
+                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"&deadline="+jsdata[i].deadline+"&myMoney="+myMoney+"'><button>我要出價</button></a></td></tr>";
                 }
             }
             txt += "</table>";
@@ -164,6 +164,8 @@ function hi(uid){
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
             txt = 'Hi '+jsdata.name+", your money: $"+jsdata.money;
+            myMoney=jsdata.money;
+            login = jsdata.loginTime;
             document.getElementById("hi").innerHTML=txt;
 		}
     });
@@ -264,6 +266,28 @@ $.ajax({
             alertify.alert(txt);
 		}
     });}
+function bonus(){
+    d = new Date();
+    time = new Date(d.getFullYear(),d.getMonth(),d.getDate());
+    loginTime = new Date(login);
+    if(loginTime <= time){
+        $.ajax({
+        url: "bonus.php",
+		dataType: 'html',
+        type: 'POST',
+        data:{id:uid
+        },
+        error: function(response) {
+			alertify.alert('Ajax request failed!');
+			},
+		success: function() {
+            alertify.alert("<h2>You get the bonus for $1000!!!</h2>");
+		}
+    });
+    }else
+        alertify.alert("<h2>You had already got the login-bonus</br>Last time: "+loginTime+"</h2>");
+    
+}
 window.onload = function () {
     setInterval(function () {
 		load()
@@ -271,10 +295,11 @@ window.onload = function () {
 };
 </script>
 <div id="ci">
-<big><a href="cInfor.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">Card Information<a/></big><br/>
+<big><a href="cInfor.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">Card Information</a></big><br/>
 <big><a href='javascript: changeMoney()' style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">Money Exchange</a></big><br/>
-<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">My Record<a/></big><br/>
-<button id="logout" onclick='rank()'>Rank</button></a>
+<big><a href="record.php" style="font-family:Century Gothic;font-weight:bold;text-decoration:none;color:DarkOrchid">My Record</a></big><br/>
+<button id="logout" onclick='rank()'>Rank</button>
+<button id="logout" onclick='bonus()'>每日領取</button>
 <a href='controller.php?logout=true'><button id="logout">登出</button></a>
 </div>
 
@@ -306,6 +331,7 @@ if(isset($_GET['aid'])){
     echo "<input type='hidden' name='high' value='{$_GET['high']}'>";
     echo "<input type='hidden' name='hName' value='{$_GET['hName']}'>";
     echo "<input type='hidden' name='deadline' value='{$_GET['deadline']}'>";
+    echo "<input type='hidden' name='money' value='{$_GET['myMoney']}'>";
     echo "<input type='hidden' name='act' value='raised'>";
     echo "<input type='hidden' name='aid' value='$aid'>";
     echo "<table border='5' width='500'><tr><td>交易序號:$aid</td>";

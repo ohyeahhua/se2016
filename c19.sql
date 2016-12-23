@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-19 12:51:57
--- 伺服器版本: 10.1.13-MariaDB
--- PHP 版本： 5.6.21
+-- 產生時間： 2016-12-23 12:02:23
+-- 伺服器版本: 10.1.16-MariaDB
+-- PHP 版本： 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -37,6 +37,19 @@ CREATE TABLE `auction` (
   `high_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `high_price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 資料表的匯出資料 `auction`
+--
+
+INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadline`, `high_name`, `high_price`) VALUES
+(583, 1, 1, 1, 500, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 500),
+(587, 2, 4, 2, 600, '2016-12-22 05:00:00', '2016-12-26 12:00:00', '', 600),
+(591, 1, 5, 1, 300, '2016-12-22 12:00:00', '2016-12-26 12:00:00', '', 300),
+(594, 4, 6, 2, 400, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 400),
+(597, 8, 7, 1, 250, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 250),
+(600, 6, 5, 3, 800, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 800),
+(603, 8, 1, 1, 300, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 300);
 
 -- --------------------------------------------------------
 
@@ -85,6 +98,28 @@ CREATE TABLE `inventory` (
   `H` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- 資料表的匯出資料 `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
+(1, 1, 2, 1, 2, 3, 0, 1, 3, 1),
+(2, 2, 2, 1, 3, 3, 2, 3, 4, 4),
+(3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
+(4, 4, 1, 1, 2, 3, 2, 3, 1, 1),
+(5, 4, 3, 2, 5, 1, 2, 3, 2, 3),
+(6, 6, 1, 1, 2, 3, 4, 5, 3, 2),
+(7, 7, 2, 2, 2, 2, 2, 2, 2, 2),
+(8, 8, 4, 3, 2, 1, 5, 6, 3, 3),
+(9, 9, 3, 1, 2, 1, 3, 2, 4, 2),
+(10, 10, 4, 4, 3, 3, 2, 2, 1, 1),
+(11, 11, 5, 3, 1, 1, 3, 5, 2, 4),
+(12, 12, 4, 2, 1, 3, 5, 1, 2, 4),
+(13, 13, 1, 2, 3, 4, 5, 4, 2, 1),
+(14, 14, 3, 5, 2, 4, 1, 4, 5, 3),
+(15, 15, 3, 2, 1, 4, 3, 2, 1, 4),
+(16, 16, 3, 3, 3, 3, 3, 3, 3, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -96,15 +131,32 @@ CREATE TABLE `player` (
   `loginID` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `pwd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `money` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
+  `money` bigint(225) NOT NULL,
+  `loginTime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 資料表的匯出資料 `player`
 --
 
-INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`) VALUES
-(0, 'root', 'npc', 'root', '1009079');
+INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`, `loginTime`) VALUES
+(0, 'root', 'NPC', 'root', 1009404, '0000-00-00 00:00:00'),
+(1, '1', 'Sam', '1', 7000, '2016-12-23 18:40:20'),
+(2, '2', 'Ming', '2', 4000, '2016-12-23 18:48:21'),
+(3, '3', 'Hua', '3', 2000, '2016-12-23 00:00:00'),
+(4, '4', 'Flower', '4', 4500, '2016-12-23 00:00:00'),
+(5, '5', 'Jack', '5', 2500, '2016-12-23 00:00:00'),
+(6, '6', 'Lucy', '6', 5000, '2016-12-23 00:00:00'),
+(7, '7', 'Jessica', '7', 3500, '2016-12-23 00:00:00'),
+(8, '8', 'John', '8', 3200, '2016-12-23 00:00:00'),
+(9, '9', 'Lulu', '9', 4200, '2016-12-23 00:00:00'),
+(10, '10', 'Denny', '10', 2600, '2016-12-23 00:00:00'),
+(11, '11', 'Pets', '11', 5400, '2016-12-23 00:00:00'),
+(12, '12', 'Ray', '12', 4100, '2016-12-23 00:00:00'),
+(13, '13', 'Hanna', '13', 3400, '2016-12-23 00:00:00'),
+(14, '14', 'Max', '14', 2900, '2016-12-23 00:00:00'),
+(15, '15', 'Chi', '15', 3600, '2016-12-23 00:00:00'),
+(16, '16', 'Yee', '16', 4000, '2016-12-23 18:55:06');
 
 -- --------------------------------------------------------
 
@@ -163,7 +215,7 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=758;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
@@ -173,17 +225,17 @@ ALTER TABLE `card`
 -- 使用資料表 AUTO_INCREMENT `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- 使用資料表 AUTO_INCREMENT `player`
 --
 ALTER TABLE `player`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=640;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

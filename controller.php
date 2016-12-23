@@ -61,7 +61,7 @@ switch($act) {
         break;
     case "raised":  
         $price = $_POST['price'];
-        $money = $_SESSION['money'];
+        $money = $_POST['money'];
         if($price > $money){
             echo "<script>alertify.alert('You don\'t have enough money.',function(){window.location='profile.php';})</script> ";
             exit(0);
