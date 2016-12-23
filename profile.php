@@ -53,6 +53,17 @@ input[type="submit"]{
     cursor:pointer;
     border-radius: 5px;
 }
+#btn {
+    padding:5px 10px; 
+    background:Gainsboro; 
+    border:0 none;
+    cursor:pointer;
+    border-radius: 5px;
+}
+a {
+    text-decoration:none;
+    color:red;
+}
 </style>
 <title>WELCOME!</title>
 <h1 style="color:MidnightBlue;font-style:italic;font-size:1.0cm" align="center">World Hegemony Battle</h1>
@@ -124,9 +135,9 @@ function load() {
                     else
                         txt+="<tr><td>"+jsdata[i].aid+"</td><td>"+jsdata[i].name+"</td><td>"+jsdata[i].Hname+"</td><td>"+jsdata[i].num+"</td><td>"+jsdata[i].lowprice+"</td><td>"+jsdata[i].deadline+"</td><td>"+time+"</td><td>"+jsdata[i].high_name+"</td><td>"+jsdata[i].high_price+"</td>";
                     if(jsdata[i].name==name||jsdata[i].high_name==name)
-                        txt+="<td><button>X</button></td></tr>";
+                        txt+="<td><button id='btn'>X</button></td></tr>";
                     else
-                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"&deadline="+jsdata[i].deadline+"&myMoney="+myMoney+"'><button>我要出價</button></a></td></tr>";
+                        txt+="<td><a href='profile.php?aid="+jsdata[i].aid+"&high="+jsdata[i].high_price+"&hName="+jsdata[i].high_name+"&deadline="+jsdata[i].deadline+"&myMoney="+myMoney+"'><button id='btn'>我要出價</button></a></td></tr>";
                 }
             }
             txt += "</table>";
@@ -334,7 +345,7 @@ if(isset($_GET['aid'])){
     echo "<input type='hidden' name='money' value='{$_GET['myMoney']}'>";
     echo "<input type='hidden' name='act' value='raised'>";
     echo "<input type='hidden' name='aid' value='$aid'>";
-    echo "<table border='5' width='500'><tr><td>交易序號:$aid</td>";
+    echo "</br><table border='5' width='500'><tr><td>交易序號:$aid</td>";
     echo "<td>輸入金額:<input type='text' name='price'></td>";
     echo "<td><input type='submit' value='確認'></form></td></tr></table>";
 }
