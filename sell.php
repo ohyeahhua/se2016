@@ -48,19 +48,4 @@ function submoney($name,$price,$money){
     mysqli_query($conn,$sql);
     return $tmp;
 }
-function seeRecord($uid) {
-    global $conn;
-    $sql = "SELECT name,high_name,cName,deadline,high_price from player,auction where auction.uid=player.uid and auction.high_name=player.uid and card.cID=auction.cID";
-    if ($result = mysqli_query($conn,$sql)) {
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "<tr><td>{$row['name']}</td>";
-            echo "<td>{$row['high_name']}</td>";
-            echo "<td>{$row['cName']}</td>";
-            echo "<td>{$row['high_price']}</td>";
-            echo "<td>{$row['deadline']}</td></tr>";
-        }
-    } else {
-        return false;
-    }
-}
 ?>

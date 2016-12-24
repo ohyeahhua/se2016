@@ -14,7 +14,7 @@ $t=$_POST['third'];
 global $conn;
 //若有人競價 -> 新增record 得標者加庫存 拍賣者加錢
 if($hName != ""){
-    $sql="INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`, `price`, `deadline`) VALUES (NULL, '$name', '$hName', '$cName', '$price', '$deadline');";
+    $sql="INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`,`num`, `price`, `deadline`) VALUES (NULL, '$name', '$hName', '$cName','$num', '$price', '$deadline');";
     $result = mysqli_query($conn,$sql);
     if($name=='NPC'){
         $sql="update inventory,player set $cards[$f]=$cards[$f]+1 where name='$hName' and player.uid = inventory.uid;";

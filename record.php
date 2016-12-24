@@ -65,6 +65,7 @@ h2 {
     <td>拍賣者</td>
     <td>得標者</td>
     <td>得標卡</td>
+    <td>數量</td>
     <td>得標金額</td>
     <td>截止時間</td>
 </tr>
@@ -74,12 +75,13 @@ session_start();
 global $conn;
 $uid = $_SESSION['uid'];
 $name = $_SESSION['name'];
-$sql = "SELECT auc,bidder,Hname,price,deadline,card.cName from record,card where (auc='$name' or bidder='$name') and card.cName = record.cName;";
+$sql = "SELECT auc,bidder,Hname,price,deadline,card.cName,num from record,card where (auc='$name' or bidder='$name') and card.cName = record.cName;";
 if ($result = mysqli_query($conn,$sql)) {
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>{$row['auc']}</td>";
         echo "<td>{$row['bidder']}</td>";
         echo "<td>{$row['Hname']}</td>";
+        echo "<td>{$row['num']}</td>";
         echo "<td>{$row['price']}</td>";
         echo "<td>{$row['deadline']}</td></tr>";
     }
