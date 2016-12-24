@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-23 12:02:23
+-- 產生時間： 2016-12-24 03:02:33
 -- 伺服器版本: 10.1.16-MariaDB
 -- PHP 版本： 5.6.24
 
@@ -49,7 +49,8 @@ INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadli
 (594, 4, 6, 2, 400, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 400),
 (597, 8, 7, 1, 250, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 250),
 (600, 6, 5, 3, 800, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 800),
-(603, 8, 1, 1, 300, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 300);
+(603, 8, 1, 1, 300, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 300),
+(1666, 0, 9, 1, 392, '2016-12-24 10:02:30', '2016-12-24 10:03:02', '', 392);
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
-(1, 1, 2, 1, 2, 3, 0, 1, 3, 1),
+(1, 1, 2, 1, 3, 3, 0, 2, 3, 2),
 (2, 2, 2, 1, 3, 3, 2, 3, 4, 4),
 (3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
 (4, 4, 1, 1, 2, 3, 2, 3, 1, 1),
@@ -140,8 +141,8 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`, `loginTime`) VALUES
-(0, 'root', 'NPC', 'root', 1009404, '0000-00-00 00:00:00'),
-(1, '1', 'Sam', '1', 7000, '2016-12-23 18:40:20'),
+(0, 'root', 'NPC', 'root', 1009904, '0000-00-00 00:00:00'),
+(1, '1', 'Sam', '1', 7500, '2016-12-24 01:18:24'),
 (2, '2', 'Ming', '2', 4000, '2016-12-23 18:48:21'),
 (3, '3', 'Hua', '3', 2000, '2016-12-23 00:00:00'),
 (4, '4', 'Flower', '4', 4500, '2016-12-23 00:00:00'),
@@ -172,6 +173,13 @@ CREATE TABLE `record` (
   `price` int(11) NOT NULL,
   `deadline` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 資料表的匯出資料 `record`
+--
+
+INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`, `price`, `deadline`) VALUES
+(1, 'NPC', 'Sam', '', 500, '2016-12-24 01:13:11');
 
 --
 -- 已匯出資料表的索引
@@ -215,7 +223,7 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=758;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1667;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
@@ -235,7 +243,7 @@ ALTER TABLE `player`
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
