@@ -12,15 +12,13 @@ $f=$_POST['first'];
 $s=$_POST['second'];
 $t=$_POST['third'];
 global $conn;
-//­Y¦³¤HÄv»ù -> ·s¼Wrecord ±o¼ĞªÌ¥[®w¦s ©ç½æªÌ¥[¿ú
+//è‹¥æœ‰äººç«¶åƒ¹ -> æ–°å¢record å¾—æ¨™è€…åŠ åº«å­˜ æ‹è³£è€…åŠ éŒ¢
 if($hName != ""){
     $sql="INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`,`num`, `price`, `deadline`) VALUES (NULL, '$name', '$hName', '$cName','$num', '$price', '$deadline');";
     $result = mysqli_query($conn,$sql);
     if($name=='NPC'){
         $sql="update inventory,player set $cards[$f]=$cards[$f]+1 where name='$hName' and player.uid = inventory.uid;";
         $result = mysqli_query($conn,$sql);
-        if($result)
-            echo "<script>alert('123')</script>";
         $sql="update inventory,player set $cards[$s]=$cards[$s]+1 where name='$hName' and player.uid = inventory.uid;";
         $result = mysqli_query($conn,$sql);
         $sql="update inventory,player set $cards[$t]=$cards[$t]+1 where name='$hName' and player.uid = inventory.uid;"; 
@@ -30,7 +28,7 @@ if($hName != ""){
 
     $sql="update player set money=money+$price where name='$name';";
     $result = mysqli_query($conn,$sql);
-}else{//©ç½æªÌ¥[®w¦s
+}else{//æ‹è³£è€…åŠ åº«å­˜
     $sql="update inventory,player set $cName=$cName+$num where name='$name' and player.uid = inventory.uid;";
     $result = mysqli_query($conn,$sql);
 }
