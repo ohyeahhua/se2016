@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-12-24 03:02:33
--- 伺服器版本: 10.1.16-MariaDB
--- PHP 版本： 5.6.24
+-- 產生時間： 2016-12-24 06:31:08
+-- 伺服器版本: 10.1.13-MariaDB
+-- PHP 版本： 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -50,7 +50,8 @@ INSERT INTO `auction` (`aid`, `uid`, `cID`, `num`, `lowprice`, `uptime`, `deadli
 (597, 8, 7, 1, 250, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 250),
 (600, 6, 5, 3, 800, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 800),
 (603, 8, 1, 1, 300, '2016-12-22 01:00:00', '2016-12-26 12:00:00', '', 300),
-(1666, 0, 9, 1, 392, '2016-12-24 10:02:30', '2016-12-24 10:03:02', '', 392);
+(1965, 0, 9, 1, 316, '2016-12-24 13:28:30', '2016-12-24 13:29:28', '', 316),
+(1966, 0, 9, 1, 311, '2016-12-24 13:29:00', '2016-12-24 13:29:35', '', 311);
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,7 @@ INSERT INTO `card` (`cID`, `Hname`, `function`, `cName`) VALUES
 (6, '做好做滿倫', '攻擊力 2000\r\n守備力 1800\r\n以三寸不爛之舌\r\n說的對手頭昏眼花', 'F'),
 (7, '安倍三把箭', '攻擊力 2500\r\n守備力 3000\r\n具備修復能力\r\n能將隊友恢復百分百戰鬥力', 'G'),
 (8, '欲罷不能的阿惠', '攻擊力 500\r\n守備力 500\r\n直接將自己的弱點暴露於對手', 'H'),
-(9, '福袋', '', '');
+(9, '福袋', '', 'I');
 
 -- --------------------------------------------------------
 
@@ -104,7 +105,7 @@ CREATE TABLE `inventory` (
 --
 
 INSERT INTO `inventory` (`id`, `uid`, `A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`) VALUES
-(1, 1, 2, 1, 3, 3, 0, 2, 3, 2),
+(1, 1, 4, 3, 3, 3, 2, 3, 4, 3),
 (2, 2, 2, 1, 3, 3, 2, 3, 4, 4),
 (3, 3, 3, 3, 3, 3, 3, 3, 3, 3),
 (4, 4, 1, 1, 2, 3, 2, 3, 1, 1),
@@ -141,8 +142,8 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`uid`, `loginID`, `name`, `pwd`, `money`, `loginTime`) VALUES
-(0, 'root', 'NPC', 'root', 1009904, '0000-00-00 00:00:00'),
-(1, '1', 'Sam', '1', 7500, '2016-12-24 01:18:24'),
+(0, 'root', 'NPC', 'root', 1011214, '0000-00-00 00:00:00'),
+(1, '1', 'Sam', '1', 6190, '2016-12-24 01:18:24'),
 (2, '2', 'Ming', '2', 4000, '2016-12-23 18:48:21'),
 (3, '3', 'Hua', '3', 2000, '2016-12-23 00:00:00'),
 (4, '4', 'Flower', '4', 4500, '2016-12-23 00:00:00'),
@@ -170,6 +171,7 @@ CREATE TABLE `record` (
   `auc` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `bidder` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `cName` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `num` int(255) NOT NULL,
   `price` int(11) NOT NULL,
   `deadline` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -178,8 +180,11 @@ CREATE TABLE `record` (
 -- 資料表的匯出資料 `record`
 --
 
-INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`, `price`, `deadline`) VALUES
-(1, 'NPC', 'Sam', '', 500, '2016-12-24 01:13:11');
+INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`, `num`, `price`, `deadline`) VALUES
+(1, 'NPC', 'Sam', 'I', 1, 500, '2016-12-24 01:13:11'),
+(2, 'NPC', 'Sam', 'I', 1, 310, '2016-12-24 10:46:42'),
+(3, 'NPC', 'Sam', 'I', 1, 500, '2016-12-24 11:33:00'),
+(4, 'NPC', 'Sam', 'I', 1, 500, '2016-12-24 13:28:57');
 
 --
 -- 已匯出資料表的索引
@@ -223,7 +228,7 @@ ALTER TABLE `record`
 -- 使用資料表 AUTO_INCREMENT `auction`
 --
 ALTER TABLE `auction`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1667;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1967;
 --
 -- 使用資料表 AUTO_INCREMENT `card`
 --
@@ -243,7 +248,7 @@ ALTER TABLE `player`
 -- 使用資料表 AUTO_INCREMENT `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
