@@ -12,7 +12,7 @@ $f=$_POST['first'];
 $s=$_POST['second'];
 $t=$_POST['third'];
 global $conn;
-//è‹¥æœ‰äººç«¶åƒ¹ -> æ–°å¢record å¾—æ¨™è€…åŠ åº«å­˜ æ‹è³£è€…åŠ éŒ¢
+//­Y¦³¤HÄv»ù -> ·s¼Wrecord ±o¼ĞªÌ¥[®w¦s ©ç½æªÌ¥[¿ú
 if($hName != ""){
     $sql="INSERT INTO `record` (`rid`, `auc`, `bidder`, `cName`,`num`, `price`, `deadline`) VALUES (NULL, '$name', '$hName', '$cName','$num', '$price', '$deadline');";
     $result = mysqli_query($conn,$sql);
@@ -28,7 +28,7 @@ if($hName != ""){
 
     $sql="update player set money=money+$price where name='$name';";
     $result = mysqli_query($conn,$sql);
-}else{//æ‹è³£è€…åŠ åº«å­˜
+}else{//©ç½æªÌ¥[®w¦s
     $sql="update inventory,player set $cName=$cName+$num where name='$name' and player.uid = inventory.uid;";
     $result = mysqli_query($conn,$sql);
 }

@@ -156,7 +156,7 @@ function card(uid){
 			},
 		success: function(json) {
             jsdata = jQuery.parseJSON(json);
-            txt = '<tr style="font-weight:bold"><td>歧視的川普</td><td>悲傷之音-Si La Re</td><td>進擊的小英</td><td>小馬愛說笑</td><td>阿扁口袋深</td><td>做好做滿倫</td><td>安倍三把箭</td><td>欲罷不能的阿惠</td></tr>';
+            txt = '<tr style="font-weight:bold"><td>A.歧視的川普</td><td>B.悲傷之音-Si La Re</td><td>C.進擊的小英</td><td>D.小馬愛說笑</td><td>E.阿扁口袋深</td><td>F.做好做滿倫</td><td>G.安倍三把箭</td><td>H.欲罷不能的阿惠</td></tr>';
             txt += "<tr><td>"+"<a href='profile.php?type=A&nnum="+jsdata.A+"'>"+jsdata.A+"</a>"+"</td><td>"+"<a href='profile.php?type=B&nnum="+jsdata.B+"'>"+jsdata.B+"</a>"+"</td><td>"+"<a href='profile.php?type=C&nnum="+jsdata.C+"'>"+jsdata.C+"</a>"+"</td><td>"+"<a href='profile.php?type=D&nnum="+jsdata.D+"'>"+jsdata.D+"</a>"+"</td><td>"+"<a href='profile.php?type=E&nnum="+jsdata.E+"'>"+jsdata.E+"</a>"+"</td><td>"+"<a href='profile.php?type=F&nnum="+jsdata.F+"'>"+jsdata.F+"</a>"+"</td><td>"+"<a href='profile.php?type=G&nnum="+jsdata.G+"'>"+jsdata.G+"</a>"+"</td><td>"+"<a href='profile.php?type=H&nnum="+jsdata.H+"'>"+jsdata.H+"</a>"+"</td></tr>";
             txt += "</table>";
             document.getElementById("card").innerHTML=txt;
